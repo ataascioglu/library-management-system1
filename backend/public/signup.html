@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="access-wrapper">
+        <div class="access-card">
+            <div class="access-header">
+                <div class="brand-logo">
+                    <div class="logo-stack">
+                        <img src="../images/logo.png" alt="Logo">
+                    </div>
+                </div>
+                <h2>Create Account</h2>
+                <p>Register to get started</p>
+            </div>
+
+            <form class="access-form" id="signupForm" novalidate>
+                <div class="input-block">
+                    <div class="input-field">
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                        <label for="name">Full Name</label>
+                        <span class="error-msg" id="nameError"></span>
+                    </div>
+                </div>
+
+                <div class="input-block">
+                    <div class="input-field">
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                        <label for="email">Email Address</label>
+                        <span class="error-msg" id="emailError"></span>
+                    </div>
+                </div>
+
+                <div class="input-block">
+                    <div class="input-field password-field">
+                        <input type="password" id="password" name="password" required autocomplete="new-password">
+                        <label for="password">Password</label>
+                        <button type="button" class="toggle-password" id="toggleSignupPassword">
+                            <span class="toggle-icon"></span>
+                        </button>
+                        <span class="error-msg" id="passwordError"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-access">Sign Up</button>
+                <div class="muted" id="formMessage" style="margin-top:10px"></div>
+            </form>
+
+            <div class="register-link">
+                <p>Already have an account? <a href="index.html">Log In</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>
+
+
