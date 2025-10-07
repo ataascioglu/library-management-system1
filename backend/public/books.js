@@ -59,15 +59,6 @@ if (!token) {
 
 userInfo.textContent = `Hi, ${localStorage.getItem("userName") || "User"}`;
 
-// Show admin navigation if user is admin or librarian
-const userRole = localStorage.getItem("userRole");
-if (userRole === "admin" || userRole === "librarian") {
-  const adminNav = document.getElementById("admin-nav");
-  if (adminNav) {
-    adminNav.style.display = "block";
-  }
-}
-
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "index.html";
