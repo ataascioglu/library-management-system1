@@ -1,4 +1,3 @@
-// backend/controllers/authController.js
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config.js";
@@ -14,7 +13,6 @@ export const register = async (req, res, next) => {
 
     const user = await User.create({ name, email, password });
 
-    // don't send password back
     const userToReturn = {
       id: user._id,
       name: user.name,

@@ -1,6 +1,5 @@
 import Book from "../models/Book.js";
 
-// GET all books
 export const getAllBooks = async (req, res, next) => {
     try {
         const books = await Book.find({});
@@ -10,14 +9,12 @@ export const getAllBooks = async (req, res, next) => {
     }
 };
 
-// Borrow a book
 export const borrowBook = async (req, res, next) => {
     try {
         const book = await Book.findById(req.params.id);
         if (!book) return res.status(404).json({ message: "Book not found" });
         if (!book.isAvailable) return res.status(400).json({ message: "Book already borrowed" });
 
-        // Backfill required fields in case CSV import used different keys
         if (!book.title && book.get && book.get('Title') !== undefined) {
             book.title = book.get('Title');
         }
@@ -42,7 +39,6 @@ export const borrowBook = async (req, res, next) => {
     }
 };
 
-// Admin: create a new book
 export const createBook = async (req, res, next) => {
     try {
         const { title, author, category } = req.body;
@@ -53,7 +49,6 @@ export const createBook = async (req, res, next) => {
     }
 };
 
-// Admin: update availability status
 export const updateBookStatus = async (req, res, next) => {
     try {
         const { isAvailable } = req.body;
@@ -76,7 +71,6 @@ export const updateBookStatus = async (req, res, next) => {
     }
 };
 
-// Return a book (only by the borrower or admin/librarian)
 export const returnBook = async (req, res, next) => {
     try {
         const book = await Book.findById(req.params.id);

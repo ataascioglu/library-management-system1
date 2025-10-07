@@ -1,4 +1,3 @@
-// middlewares/validationMiddleware.js
 export const validateRequest = (schema) => {
     return (req, res, next) => {
       const { error } = schema.validate(req.body);
@@ -10,7 +9,7 @@ export const validateRequest = (schema) => {
         });
       }
   
-      next(); // doğrulama geçtiyse sonraki middleware veya controller’a geç
+      next();
     };
   };
   

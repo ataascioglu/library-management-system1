@@ -1,4 +1,3 @@
-// BookNest frontend/books.js
 const API_BASE = "https://library-management-system-production-5be5.up.railway.app/api";
 const token = localStorage.getItem("booknest_token") || "";
 
@@ -11,7 +10,6 @@ function getCurrentUserId() {
   return localStorage.getItem("userId") || "";
 }
 
-// --- Formatting helpers ---
 function toTitleCaseFromSlug(value) {
   if (!value || typeof value !== "string") return "";
   return value
@@ -24,14 +22,12 @@ function toTitleCaseFromSlug(value) {
 
 function formatAuthor(name) {
   if (!name || typeof name !== "string") return "Unknown";
-  // Handle formats like "DOE, John" or "Doe, John P."
   if (name.includes(",")) {
     const [last, first] = name.split(",").map(s => s.trim());
     const prettyFirst = toTitleCaseFromSlug(first);
     const prettyLast = toTitleCaseFromSlug(last);
     return `${prettyFirst} ${prettyLast}`.trim();
   }
-  // Handle slug/uppercase names
   return toTitleCaseFromSlug(name);
 }
 
@@ -52,7 +48,6 @@ async function ensureUserId() {
   } catch {}
 }
 
-// Redirect to login if not authenticated
 if (!token) {
   window.location.href = "index.html";
 }
@@ -70,8 +65,6 @@ async function loadBooks() {
     const res = await fetch(`${API_BASE}/books`, {
       headers: { "Authorization": `Bearer ${token}` }
     });
-    // Debug: log status for visibility in DevTools
-    // eslint-disable-next-line no-console
     console.log("GET /books status:", res.status);
     if (res.status === 401) {
       localStorage.clear();
@@ -83,13 +76,10 @@ async function loadBooks() {
       data = await res.json();
     } catch (e) {
       const text = await res.text();
-      // eslint-disable-next-line no-console
       console.error("Failed to parse JSON. Raw response:", text);
       booksList.innerHTML = "<p>Failed to parse server response.</p>";
       return;
     }
-    // Debug: log payload shape
-    // eslint-disable-next-line no-console
     console.log("/books payload:", data);
     const books = Array.isArray(data)
       ? data
@@ -102,7 +92,6 @@ async function loadBooks() {
       return;
     }
 
-    // Normalize and cache
     window.__ALL_BOOKS__ = books.map((book) => {
       const title = book.title ?? book.name ?? book.Title ?? "Untitled";
       const rawAuthor = book.author ?? book.writer ?? book.Author ?? "Unknown";
@@ -119,7 +108,6 @@ async function loadBooks() {
     renderBooks(window.__ALL_BOOKS__);
   } catch (err) {
     booksList.innerHTML = "<p>Error loading books. Try again later.</p>";
-    // eslint-disable-next-line no-console
     console.error(err);
   }
 }
@@ -128,7 +116,6 @@ function buildGenreButtons(allBooks) {
   if (!genreBarEl) return;
   const genres = Array.from(new Set(allBooks.map(b => b.category).filter(Boolean))).sort();
 
-  // Build buttons: All + unique genres
   genreBarEl.innerHTML = "";
   const btnAll = document.createElement("button");
   btnAll.className = "genre-btn active";
@@ -159,7 +146,6 @@ function setActiveGenreButton(activeBtn) {
 
 function getGenreIconClass(label) {
   const key = String(label || "").toLowerCase();
-  // Map common genres to icon classes (from flaticon uicons already linked in books.html)
   if (key.includes("fiction")) return "fi fi-sr-ufo";
   if (key.includes("science")) return "fi fi-sr-physics";
   if (key.includes("history")) return "fi fi-rr-scroll-document-story";
@@ -208,7 +194,6 @@ function renderBooks(list) {
       `;
       booksList.appendChild(card);
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("Render error at index", idx, err, book);
     }
   });
@@ -218,7 +203,6 @@ function renderBooks(list) {
 }
 
 
-// Toast notification helper
 function showToast(message, isError = false) {
   let toast = document.getElementById("toast-message");
   if (!toast) {
@@ -255,7 +239,6 @@ function showToast(message, isError = false) {
     toast.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
     toast.style.opacity = 0;
     toast.style.transition = "opacity 0.3s";
-    // Responsive for mobile
     function setToastMobileStyles() {
       if (window.innerWidth < 600) {
         toast.style.top = "56px";

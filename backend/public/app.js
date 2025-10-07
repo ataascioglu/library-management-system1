@@ -15,10 +15,8 @@ const booksList = document.getElementById("books-list");
 const userInfo = document.getElementById("user-info");
 const logoutBtn = document.getElementById("logout-btn");
 
-// Initialize
 init();
 
-// --- Initialization ---
 function init() {
   tabLogin.addEventListener("click", () => toggleTab("login"));
   tabRegister.addEventListener("click", () => toggleTab("register"));
@@ -30,7 +28,6 @@ function init() {
   if (token) autoLogin();
 }
 
-// --- Tab Toggle ---
 function toggleTab(tab) {
   tab === "login" ? showLogin() : showRegister();
 }
@@ -61,7 +58,6 @@ function clearForm(form) {
   form.querySelectorAll("input").forEach(input => input.value = "");
 }
 
-// --- Login ---
 async function handleLogin(e) {
   e.preventDefault();
   clearAuthMsg();
@@ -94,7 +90,6 @@ async function handleLogin(e) {
   }
 }
 
-// --- Register ---
 async function handleRegister(e) {
   e.preventDefault();
   clearAuthMsg();
@@ -127,7 +122,6 @@ async function handleRegister(e) {
   }
 }
 
-// --- Show Books ---
 function showBooksView(user) {
   authCard.classList.add("hidden");
   booksSection.classList.remove("hidden");
@@ -135,7 +129,6 @@ function showBooksView(user) {
   loadBooks();
 }
 
-// --- Logout ---
 function handleLogout() {
   token = "";
   localStorage.removeItem("booknest_token");
@@ -146,7 +139,6 @@ function handleLogout() {
   clearAuthMsg();
 }
 
-// --- Load Books ---
 async function loadBooks() {
   try {
     const res = await fetch(`${API_BASE}/books`);
@@ -181,7 +173,6 @@ async function loadBooks() {
   }
 }
 
-// --- Borrow Book ---
 async function borrowBook(e) {
   const id = e.target.getAttribute("data-id");
   try {
@@ -198,10 +189,8 @@ async function borrowBook(e) {
   }
 }
 
-// --- Socket Updates ---
 socket.on("book-updated", loadBooks);
 
-// --- Auto-login ---
 async function autoLogin() {
   try {
     const res = await fetch(`${API_BASE}/users/me`, {
