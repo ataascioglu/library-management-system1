@@ -201,10 +201,30 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     z-index: 1000;
   }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s ease;
+  }
+
+  .navbar-brand:hover {
+    opacity: 0.8;
+  }
+
+  .navbar-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
   
   .navbar-left h2 {
     font-size: 22px;
     font-weight: 600;
+    margin: 0;
   }
   
   .navbar-right {
