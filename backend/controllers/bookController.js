@@ -105,3 +105,26 @@ export const returnBook = async (req, res, next) => {
         next(err);
     }
 };
+
+// Admin: delete a book
+export const deleteBook = async (req, res, next) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) return res.status(404).json({ message: "Book not found" });
+        
+        // Check if book is currently borrowed
+        if (!book.isAvailable) {
+            return res.status(400).json({ message: "Cannot delete a book that is currently borrowed" });
+        }
+
+        await Book.findByIdAndDelete(req.params.id);
+
+        if (globalThis.io) {
+            globalThis.io.emit("book-updated");
+        }
+
+        res.json({ message: "Book deleted successfully" });
+    } catch (err) {
+        next(err);
+    }
+};
