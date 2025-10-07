@@ -1,6 +1,6 @@
-// frontend/books.js
+// BookNest frontend/books.js
 const API_BASE = "https://library-management-system-production-5be5.up.railway.app/api";
-const token = localStorage.getItem("lms_token") || "";
+const token = localStorage.getItem("booknest_token") || "";
 
 const userInfo = document.getElementById("user-info");
 const booksList = document.getElementById("books-list");

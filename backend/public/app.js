@@ -1,5 +1,5 @@
 const API_BASE = "https://library-management-system-production-5be5.up.railway.app/api";
-let token = localStorage.getItem("lms_token") || "";
+let token = localStorage.getItem("booknest_token") || "";
 
 const socket = io("https://library-management-system-production-5be5.up.railway.app");
 
@@ -86,7 +86,7 @@ async function handleLogin(e) {
       return;
     }
     token = data.token;
-    localStorage.setItem("lms_token", token);
+    localStorage.setItem("booknest_token", token);
     clearForm(loginForm);
     showBooksView(data.user);
   } catch {
@@ -138,7 +138,7 @@ function showBooksView(user) {
 // --- Logout ---
 function handleLogout() {
   token = "";
-  localStorage.removeItem("lms_token");
+  localStorage.removeItem("booknest_token");
   authCard.classList.remove("hidden");
   booksSection.classList.add("hidden");
   clearForm(loginForm);

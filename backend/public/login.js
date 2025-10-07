@@ -39,7 +39,7 @@ form.addEventListener("submit", async (e) => {
       passwordError.textContent = data.message || "Login failed";
       return;
     }
-    localStorage.setItem("lms_token", data.token);
+    localStorage.setItem("booknest_token", data.token);
     localStorage.setItem("userName", data.user.name);
     localStorage.setItem("userId", data.user.id);
     localStorage.setItem("userRole", data.user.role);

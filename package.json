@@ -1,7 +1,7 @@
 {
-  "name": "library-management-system-backend",
+  "name": "booknest",
   "version": "1.0.0",
-  "description": "Backend for Library Management System",
+  "description": "BookNest - Modern Library Management System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
