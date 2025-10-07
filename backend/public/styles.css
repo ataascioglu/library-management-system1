@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: url('./images/background.jpg') no-repeat center center fixed;
+    background: url('./images/background.avif') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
