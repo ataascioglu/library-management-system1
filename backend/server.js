@@ -1,4 +1,3 @@
-// backend/server.js
 import http from "http";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
@@ -8,7 +7,6 @@ import { PORT, MONGO_URI } from "./config.js";
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
-// expose globally so controllers can io.emit without circular import issues
 globalThis.io = io;
 
 io.on("connection", socket => {
