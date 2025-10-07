@@ -187,10 +187,11 @@ function renderBooks(list) {
   list.forEach((book, idx) => {
     try {
       const isMine = book.borrowedBy && getCurrentUserId() && String(book.borrowedBy) === getCurrentUserId();
+      const genreIcon = getGenreIconClass(book.category);
       const card = document.createElement("div");
       card.className = "book-card";
       card.innerHTML = `
-        <h3>${book.title}</h3>
+        <h3>${book.title} <i class="${genreIcon} genre-icon"></i></h3>
         <div class="muted">${book.author}</div>
         <div class="book-meta">
           <span class="badge">${book.category}</span>

@@ -15,10 +15,9 @@ body {
     padding: 20px;
 }
 
-/* Books page layout should flow from top, not centered like auth */
 .books-page {
     display: block;
-    padding: 0; /* navbar handles spacing */
+    padding: 0;
 }
 
 /* Card */
@@ -357,6 +356,17 @@ body {
     color: #0d47a1;
     margin-bottom: 4px;
     min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .genre-icon {
+    font-size: 16px;
+    color: #1565c0;
+    opacity: 0.7;
+    margin-left: 8px;
+    flex-shrink: 0;
   }
   
   .book-card .muted {
