@@ -272,11 +272,10 @@ body::before {
     gap: 12px;
     max-width: 1200px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: transparent;
     padding: 15px 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: none;
     margin: 0 20px;
   }
   .genre-btn {
