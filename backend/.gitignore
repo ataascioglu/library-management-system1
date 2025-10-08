@@ -1,4 +1,3 @@
-MONGO_URI=mongodb://127.0.0.1:27017/libraryDB
-PORT=5000
-JWT_SECRET=8b3ad07191dec7d690b18097eea25a7241f7cc861eed23251791ca6e34cfbb1e
-NODE_ENV=development
+.env
+*.log
+node_modules/
